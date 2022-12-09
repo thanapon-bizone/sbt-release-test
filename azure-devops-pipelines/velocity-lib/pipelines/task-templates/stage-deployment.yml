@@ -93,7 +93,7 @@ stages:
                   env:
                     SYSTEM_ACCESS_TOKEN: $(System.AccessToken)
                 - bash: |
-                    tagVersion=$(git describe --match "v*" --abbrev=0)
+                    tagVersion=$(git describe --tags --abbrev=0 --always)
                     tagReleaseVersion="${tagVersion}"
                     echo "Package version tag: $tagReleaseVersion"
                     echo "##vso[task.setvariable variable=packageversion]$tagReleaseVersion"
@@ -101,7 +101,7 @@ stages:
               # Run the following in other environments
               - ${{ else }}:
                 - bash: |
-                    tagVersion=$(git describe --match "v*" --abbrev=0)
+                    tagVersion=$(git describe --tags --abbrev=0 --always)
                     tagFeatureVersion="${tagVersion}-FEATURE"
                     echo "${tagVersion}"
                     echo "Package version tag: $tagFeatureVersion"
