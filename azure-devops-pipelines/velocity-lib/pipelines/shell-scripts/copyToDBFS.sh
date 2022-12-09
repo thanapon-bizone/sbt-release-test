@@ -17,6 +17,7 @@ copyToDBFS() {
     SOURCEJAR=velocity-lib/${packagename}_${scalaversion}.jar
 
     echo $SOURCEJAR
+    echo "JAR Version: $packageversion"
 
     echo "================================================================"
     echo "Copying ${packagename}.jar to Databricks..." dbfs:/${dbfspath}/

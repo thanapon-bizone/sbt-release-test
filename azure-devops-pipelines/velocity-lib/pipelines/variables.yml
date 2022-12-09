@@ -25,7 +25,7 @@ variables:
   devDevOpsServiceConnection: 'Microsoft Azure Sponsorship 2021'
   devDatabricksInstance: 'https://adb-4264215838968735.15.azuredatabricks.net'
   devWorkspace: 'dbw-velocity-poc-westeu'
-  devDatabricksPath: 'mnt/stvelocitypoc/datalake/jars/'
+  devDatabricksPath: 'mnt/stvelocitypoc/datalake/jars'
   devKeyVaultName: 'kv-velocity-poc-westeu'
 
   sbtOpts: -Dsbt.ivy.home=sbt_cache/ivy -Dsbt.global.base=sbt_cache/base -Dsbt.boot.directory=sbt_cache/boot -Dsbt.coursier.home=sbt_cache/coursier -Dsbt.supershell=false -Dsbt.banner=false
