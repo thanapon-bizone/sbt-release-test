@@ -40,22 +40,22 @@ stages:
     parameters:
       vmImage: $(vmImage)
 
-  # Deploy Lib to dev
-  - template: task-templates/stage-deployment.yml
-    parameters:
-      vmImage: $(winImage)
-      stageName: Deploy_Dev
-      shouldRun: 'true'
-      stageDisplayName: 'Deploy Lib to Dev'
-      environment: '$(devEnvironment)'
-      isFeatureBranch: ${{ variables.isFeatureBranch }}
-      branchName: ${{ variables.branchName }}
-      azureSubscription: ${{ variables.devSubscriptionName }}
-      workspace: $(devWorkspace)
-      databricksInstance: $(devDatabricksInstance)
-      databricksPath: $(devDatabricksPath)
-      devOpsServiceConnection: $(devDevOpsServiceConnection)
-      keyVaultName: $(devKeyVaultName)
+  # # Deploy Lib to dev
+  # - template: task-templates/stage-deployment.yml
+  #   parameters:
+  #     vmImage: $(winImage)
+  #     stageName: Deploy_Dev
+  #     shouldRun: 'true'
+  #     stageDisplayName: 'Deploy Lib to Dev'
+  #     environment: '$(devEnvironment)'
+  #     isFeatureBranch: ${{ variables.isFeatureBranch }}
+  #     branchName: ${{ variables.branchName }}
+  #     azureSubscription: ${{ variables.devSubscriptionName }}
+  #     workspace: $(devWorkspace)
+  #     databricksInstance: $(devDatabricksInstance)
+  #     databricksPath: $(devDatabricksPath)
+  #     devOpsServiceConnection: $(devDevOpsServiceConnection)
+  #     keyVaultName: $(devKeyVaultName)
 
   # Deploy Lib to Prod
   - template: task-templates/stage-deployment.yml

@@ -84,7 +84,7 @@ stages:
 
               # Run the following only in prod
               - ${{ if contains(parameters.environment, 'prod') }}:
-                - script: sbt "set releaseVersionBump := sbtrelease.Version.Bump.${{ parameters.versionBump }}; release with-defaults"
+                - script: (cd $(velocitylibpath)/; sbt "set releaseVersionBump := sbtrelease.Version.Bump.${{ parameters.versionBump }}; release with-defaults")
                   displayName: 'Release update version'
                 - script: |
                     git -c http.extraheader="AUTHORIZATION: bearer $SYSTEM_ACCESS_TOKEN" push origin --follow-tags
