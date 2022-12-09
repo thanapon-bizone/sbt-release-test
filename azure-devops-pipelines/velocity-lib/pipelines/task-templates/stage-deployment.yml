@@ -75,7 +75,7 @@ stages:
                 persistCredentials: true
               - script: |
                   git fetch
-                  git checkout origin/${{ parameters.branchName }}
+                  git checkout ${{ parameters.branchName }}
                   echo "Working on branch ${{ parameters.branchName }}"
                   echo "user.email $(Build.RequestedForEmail)"
                   echo "user.name $(Build.RequestedFor)"
