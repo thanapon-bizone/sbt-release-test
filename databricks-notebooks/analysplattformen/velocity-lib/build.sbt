@@ -1,6 +1,7 @@
 ThisBuild / organization := "com.bizone"
 ThisBuild / scalaVersion := "2.12.14"
 
+val test =""
 val scalaLibVersion = "2.12"
 val projectName = "velocity-lib"
 
