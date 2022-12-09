@@ -59,19 +59,20 @@ stages:
 
   # Deploy Lib to Prod
   # No feature branch should be deploy to Prod
-  - template: task-templates/stage-deployment.yml
-    parameters:
-      vmImage: $(winImage)
-      stageName: Deploy_Prod
-      shouldRun: ${{ variables.isFeatureBranch }}
-      versionBump: ${{ parameters.versionBump }}
-      stageDisplayName: 'Deploy Lib to Prod'
-      environment: 'prod'
-      isFeatureBranch: ${{ variables.isFeatureBranch }}
-      branchName: ${{ variables.branchName }}
-      azureSubscription: ${{ variables.devSubscriptionName }}
-      workspace: $(devWorkspace)
-      databricksInstance: $(devDatabricksInstance)
-      databricksPath: $(devDatabricksPath)
-      devOpsServiceConnection: $(devDevOpsServiceConnection)
-      keyVaultName: $(devKeyVaultName)
+  - ${{ if eq(variables['isFeatureBranch'], 'false') }}:
+    - template: task-templates/stage-deployment.yml
+      parameters:
+        vmImage: $(winImage)
+        stageName: Deploy_Prod
+        shouldRun: ${{ variables.isFeatureBranch }}
+        versionBump: ${{ parameters.versionBump }}
+        stageDisplayName: 'Deploy Lib to Prod'
+        environment: 'prod'
+        isFeatureBranch: ${{ variables.isFeatureBranch }}
+        branchName: ${{ variables.branchName }}
+        azureSubscription: ${{ variables.devSubscriptionName }}
+        workspace: $(devWorkspace)
+        databricksInstance: $(devDatabricksInstance)
+        databricksPath: $(devDatabricksPath)
+        devOpsServiceConnection: $(devDevOpsServiceConnection)
+        keyVaultName: $(devKeyVaultName)
