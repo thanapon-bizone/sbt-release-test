@@ -63,6 +63,7 @@ stages:
       vmImage: $(winImage)
       stageName: Deploy_Prod
       shouldRun: 'true'
+      versionBump: ${{ parameters.versionBump }}
       stageDisplayName: 'Deploy Lib to Prod'
       environment: 'prod'
       isFeatureBranch: ${{ variables.isFeatureBranch }}
