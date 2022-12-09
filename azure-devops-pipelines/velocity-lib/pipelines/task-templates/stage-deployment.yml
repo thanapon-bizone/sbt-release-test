@@ -103,6 +103,7 @@ stages:
                 - bash: |
                     tagVersion=$(git describe --tags --abbrev=0)
                     tagFeatureVersion="${tagVersion}-FEATURE"
+                    echo "${tagVersion}"
                     echo "Package version tag: $tagFeatureVersion"
                     echo "##vso[task.setvariable variable=packageversion]$tagFeatureVersion"
                   displayName: 'Get release version'
