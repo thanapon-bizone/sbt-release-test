@@ -58,12 +58,12 @@ stages:
       keyVaultName: $(devKeyVaultName)
 
   # Deploy Lib to Prod
+  # No feature branch should be deploy to Prod
   - template: task-templates/stage-deployment.yml
-    condition: and(succeeded(), eq(variables.isFeatureBranch, 'false'))
     parameters:
       vmImage: $(winImage)
       stageName: Deploy_Prod
-      shouldRun: 'true'
+      shouldRun: ${{ variables.isFeatureBranch }}
       versionBump: ${{ parameters.versionBump }}
       stageDisplayName: 'Deploy Lib to Prod'
       environment: 'prod'
