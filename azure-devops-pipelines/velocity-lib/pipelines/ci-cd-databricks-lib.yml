@@ -1,0 +1,75 @@
+# The pipeline responsible for Velocity lib deployments
+
+name: $(SourceBranchName)_$(date:yyyyMMdd)$(rev:.r)
+
+trigger: none
+pr: none
+
+parameters:
+  - name: versionBump
+    displayName: Version bump
+    type: string
+    values:
+      - Major
+      - Minor
+      - Bugfix
+    default: Minor
+
+variables:
+- template: variables.yml
+- name: branchName
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/') }}:
+    value: $(Build.SourceBranchName)
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
+    value: $(System.PullRequest.SourceBranch)
+- name: isFeatureBranch
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/heads/') }}:
+    value: ${{ ne(variables['Build.SourceBranchName'], 'main')}}
+  ${{ if startsWith(variables['Build.SourceBranch'], 'refs/pull/') }}:
+    value: ${{ ne(variables['System.PullRequest.SourceBranch'], 'main')}}
+
+stages:
+  
+  # Publish Jar and Artiffacts
+  - template: task-templates/stage-build-artifacts.yml
+    parameters:
+      vmImage: $(vmImage)
+
+  # Run SBT Test
+  - template: task-templates/stage-sbt-test.yml
+    parameters:
+      vmImage: $(vmImage)
+
+  # Deploy Lib to dev
+  - template: task-templates/stage-deployment.yml
+    parameters:
+      vmImage: $(winImage)
+      stageName: Deploy_Dev
+      shouldRun: 'true'
+      stageDisplayName: 'Deploy Lib to Dev'
+      environment: '$(devEnvironment)'
+      isFeatureBranch: ${{ variables.isFeatureBranch }}
+      branchName: ${{ variables.branchName }}
+      azureSubscription: ${{ variables.devSubscriptionName }}
+      workspace: $(devWorkspace)
+      databricksInstance: $(devDatabricksInstance)
+      databricksPath: $(devDatabricksPath)
+      devOpsServiceConnection: $(devDevOpsServiceConnection)
+      keyVaultName: $(devKeyVaultName)
+
+  # Deploy Lib to Prod
+  - template: task-templates/stage-deployment.yml
+    parameters:
+      vmImage: $(winImage)
+      stageName: Deploy_Prod
+      shouldRun: 'true'
+      stageDisplayName: 'Deploy Lib to Prod'
+      environment: '$(devEnvironment)'
+      isFeatureBranch: ${{ variables.isFeatureBranch }}
+      branchName: ${{ variables.branchName }}
+      azureSubscription: ${{ variables.devSubscriptionName }}
+      workspace: $(devWorkspace)
+      databricksInstance: $(devDatabricksInstance)
+      databricksPath: $(devDatabricksPath)
+      devOpsServiceConnection: $(devDevOpsServiceConnection)
+      keyVaultName: $(devKeyVaultName)

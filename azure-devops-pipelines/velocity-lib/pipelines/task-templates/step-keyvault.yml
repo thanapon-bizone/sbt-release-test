@@ -1,0 +1,8 @@
+steps:
+  #Download Azure Key Vault secrets
+  - task: AzureKeyVault@1
+    displayName: 'Get Secrets [Key Vault - ${{parameters.keyVault}}]'
+    inputs:
+      azureSubscription: '${{parameters.connectedServiceName}}'
+      keyVaultName: '${{parameters.keyVault}}'
+      secretsFilter: '${{parameters.kvAccessTokenName}}'

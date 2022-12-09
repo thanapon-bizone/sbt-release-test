@@ -1,0 +1,37 @@
+
+variables:
+
+  #Project Variable
+  project: 'velocity'
+  defaultLocation: 'West Europe'
+  locationInitials: 'westeu'
+  defaultLocationNoSpace: 'westeurope'
+  revision: $(BuildRevision)
+  year: $(Year:yy)
+  packagename: 'velocity-lib'
+  packageversion: '0.1.0'
+  scalaversion: '2.12'
+  scalabuild: '7'
+
+  vmImage: 'ubuntu-latest'
+  winImage: 'windows-latest'
+  databricksEnterpriseId: '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d'
+  velocityLibPath: '$(Build.SourcesDirectory)/databricks-notebooks/analysplattformen/velocity-lib'
+
+  packageJarName: '$(packagename)-$(scalaversion)-SNAPSHOT.jar'
+
+  devEnvironment: 'dev'
+  devTenantId: 'cd28a44a-495f-4695-b9f1-c0df58b5c849'
+  devSubscriptionName: 'Microsoft Azure Sponsorship 2021'
+  devSubscriptionId: '5f64f1ab-42b5-4fee-93ca-918ef6018d0c'
+  devDevOpsServiceConnection: 'Microsoft Azure Sponsorship 2021'
+  devDatabricksInstance: 'https://adb-4264215838968735.15.azuredatabricks.net'
+  devWorkspace: 'dbw-velocity-poc-westeu'
+  devDatabricksPath: 'mnt/stvelocitypoc/datalake/jars/'
+  devKeyVaultName: 'kv-velocity-poc-westeu'
+
+  sbtOpts: -Dsbt.ivy.home=sbt_cache/ivy -Dsbt.global.base=sbt_cache/base -Dsbt.boot.directory=sbt_cache/boot -Dsbt.coursier.home=sbt_cache/coursier -Dsbt.supershell=false -Dsbt.banner=false
+  cacheFiles: build.sbt | project/plugins.sbt | project/build.properties
+
+
+

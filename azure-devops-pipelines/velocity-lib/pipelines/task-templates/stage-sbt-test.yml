@@ -1,0 +1,12 @@
+stages:
+
+- stage: SbtTest
+  displayName: 'Test stage'
+  jobs:
+    - job: TestJob
+      displayName: 'SBT Test'
+      pool:
+        vmImage: '${{ parameters.vmImage }}'
+      steps:
+      - script: (cd $(velocityLibPath)/; sbt compile package)
+        displayName: Compile and test

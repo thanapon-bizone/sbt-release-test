@@ -1,0 +1,28 @@
+#Build artifacts stage
+
+stages:
+
+- stage: BuildArtifacts
+  displayName: 'Build Artifacts'
+  jobs:
+    - job: PublishSourceFiles
+      displayName: 'Publish Source Files'
+      pool:
+        vmImage: '${{ parameters.vmImage }}'
+      variables:
+        buildConfiguration: 'Release'
+      steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'filePath'
+          filePath: $(Build.SourcesDirectory)/azure-devops-pipelines/velocity-lib/pipelines/shell-scripts/compileAndPackage.sh
+          arguments: $(packagename) $(packageversion) $(scalaversion) $(velocityLibPath)
+        displayName: 'Bash $ compileAndPackage.sh'
+
+      - publish: $(Build.SourcesDirectory)/azure-devops-pipelines/velocity-lib/pipelines/shell-scripts/
+        artifact: shell-scripts
+        displayName: 'Publish bash scripts'
+
+      - publish: $(velocityLibPath)/target/scala-$(scalaversion)/$(packageJarName)
+        artifact: velocity-lib
+        displayName: 'Publish jar file'
