@@ -18,8 +18,6 @@ variables:
   databricksEnterpriseId: '2ff814a6-3304-4ab8-85cb-cd0e6f879c1d'
   velocityLibPath: '$(Build.SourcesDirectory)/databricks-notebooks/analysplattformen/velocity-lib'
 
-  packageJarName: '$(packagename)-$(scalaversion)-SNAPSHOT.jar'
-
   devEnvironment: 'dev'
   devTenantId: 'cd28a44a-495f-4695-b9f1-c0df58b5c849'
   devSubscriptionName: 'Microsoft Azure Sponsorship 2021'

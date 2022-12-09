@@ -23,6 +23,6 @@ stages:
         artifact: shell-scripts
         displayName: 'Publish bash scripts'
 
-      - publish: $(velocityLibPath)/target/scala-$(scalaversion)/$(packageJarName)
+      - publish: $(velocityLibPath)/target/scala-$(scalaversion)/$(packagename)_$(scalaversion).jar
         artifact: velocity-lib
         displayName: 'Publish jar file'
