@@ -92,20 +92,41 @@ stages:
                   displayName: 'Tag version'
                   env:
                     SYSTEM_ACCESS_TOKEN: $(System.AccessToken)
-                - bash: |
-                    tagVersion=$(git describe --tags --abbrev=0 --always)
-                    tagReleaseVersion="${tagVersion}"
-                    echo "Package version tag: $tagReleaseVersion"
-                    echo "##vso[task.setvariable variable=packageversion]$tagReleaseVersion"
+                # - bash: |
+                #     # tagVersion=$(git describe --tags --abbrev=0 --always)
+                #     tagReleaseVersion="${tagVersion}"
+                #     echo "Package version tag: $tagReleaseVersion"
+                #     echo "##vso[task.setvariable variable=packageversion]$tagReleaseVersion"
+                #   displayName: 'Get release version'
+                - task: PowerShell@2
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      $tags= git tag --sort=-creatordate
+                      $tagReleaseVersion = $tags[0]
+                      echo "${tagVersion}"
+                      echo "Package version tag: $tagReleaseVersion"
+                      echo "##vso[task.setvariable variable=packageversion]$tagReleaseVersion"
                   displayName: 'Get release version'
               # Run the following in other environments
               - ${{ else }}:
-                - bash: |
-                    tagVersion=$(git describe --tags --abbrev=0 --always)
-                    tagFeatureVersion="${tagVersion}-FEATURE"
-                    echo "${tagVersion}"
-                    echo "Package version tag: $tagFeatureVersion"
-                    echo "##vso[task.setvariable variable=packageversion]$tagFeatureVersion"
+                # - bash: |
+                #     tagVersion=$(git describe --tags --abbrev=0 --always)
+                #     tagFeatureVersion="${tagVersion}-FEATURE"
+                #     echo "${tagVersion}"
+                #     echo "Package version tag: $tagFeatureVersion"
+                #     echo "##vso[task.setvariable variable=packageversion]$tagFeatureVersion"
+                #   displayName: 'Get release version'
+
+                - task: PowerShell@2
+                  inputs:
+                    targetType: 'inline'
+                    script: |
+                      $tags= git tag --sort=-creatordate
+                      $tagFeatureVersion = $tags[0]
+                      echo "${tagVersion}"
+                      echo "Package version tag: $tagFeatureVersion"
+                      echo "##vso[task.setvariable variable=packageversion]$tagFeatureVersion"
                   displayName: 'Get release version'
 
 
