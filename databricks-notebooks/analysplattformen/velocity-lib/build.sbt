@@ -11,7 +11,7 @@ lazy val root = project
     publishArtifact := false,
     publish / skip := true,
 
-    assembly / assemblyJarName := s"${projectName}-${scalaLibVersion}-SNAPSHOT.jar",
+    assembly / assemblyJarName := s"${projectName}_${scalaLibVersion}.jar",
     libraryDependencies += "org.scalameta" %% "munit" % "0.7.29" % Test,
     // libraryDependencies += "com.microsoft.azure" %% "azure-sqldb-spark" % "1.0.2",
     // libraryDependencies += "com.microsoft.azure" %% "adal4j" % "1.6.7",
