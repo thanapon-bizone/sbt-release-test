@@ -87,11 +87,11 @@ stages:
               - ${{ if contains(parameters.environment, 'prod') }}:
                 - script: (cd $(velocitylibpath)/; sbt "set releaseVersionBump := sbtrelease.Version.Bump.${{ parameters.versionBump }}; release with-defaults")
                   displayName: 'Release update version'
-                # - script: |
-                #     git -c http.extraheader="AUTHORIZATION: bearer $SYSTEM_ACCESS_TOKEN" push origin --follow-tags
-                #   displayName: 'Tag version'
-                #   env:
-                #     SYSTEM_ACCESS_TOKEN: $(System.AccessToken)
+                - script: |
+                    git -c http.extraheader="AUTHORIZATION: bearer $SYSTEM_ACCESS_TOKEN" push origin --follow-tags
+                  displayName: 'Tag version'
+                  env:
+                    SYSTEM_ACCESS_TOKEN: $(System.AccessToken)
                 - bash: |
                     tagVersion=$(git describe --tags --abbrev=0)
                     tagReleaseVersion="${tagVersion}"
