@@ -35,10 +35,10 @@ stages:
     parameters:
       vmImage: $(vmImage)
 
-  # # Run SBT Test
-  # - template: task-templates/stage-sbt-test.yml
-  #   parameters:
-  #     vmImage: $(vmImage)
+  # Run SBT Test
+  - template: task-templates/stage-sbt-test.yml
+    parameters:
+      vmImage: $(vmImage)
 
   # Deploy Lib to dev
   - template: task-templates/stage-deployment.yml
