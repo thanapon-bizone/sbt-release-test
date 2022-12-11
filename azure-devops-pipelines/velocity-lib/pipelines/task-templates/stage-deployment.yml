@@ -96,9 +96,9 @@ stages:
                   inputs:
                     targetType: 'inline'
                     script: |
-                      $tags= git tag --sort=-creatordate
+                      $tags = git tag --sort=-creatordate
                       $tagReleaseVersion = $tags[0]
-                      echo "${tagVersion}"
+                      echo "${tags}"
                       echo "Package version tag: $tagReleaseVersion"
                       echo "##vso[task.setvariable variable=packageversion]$tagReleaseVersion"
                   displayName: 'Get release version'
@@ -108,9 +108,9 @@ stages:
                   inputs:
                     targetType: 'inline'
                     script: |
-                      $tags= git tag --sort=-creatordate
-                      $tagFeatureVersion = "$tags[0]-FEATURE" 
-                      echo "${tagVersion}"
+                      $tags = git tag --sort=-creatordate
+                      $tagFeatureVersion = -join("$($tags[0])","-FEATURE")
+                      echo "${tags}"
                       echo "Package version tag: $tagFeatureVersion"
                       echo "##vso[task.setvariable variable=packageversion]$tagFeatureVersion"
                   displayName: 'Get release version'
