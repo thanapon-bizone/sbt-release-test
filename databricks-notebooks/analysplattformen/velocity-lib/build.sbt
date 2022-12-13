@@ -11,7 +11,7 @@ lazy val releaseSteps = snapshotSteps ++ Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
   setReleaseVersion,
-  publishArtifacts
+  publishArtifacts,
   tagRelease
 )
 
