@@ -7,7 +7,7 @@ ThisBuild / scalaVersion := "2.12.14"
 val scalaLibVersion = "2.12"
 val projectName = "velocity-lib"
 
-lazy val releaseSteps = snapshotSteps ++ Seq[ReleaseStep](
+lazy val releaseSteps = Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
   setReleaseVersion,
