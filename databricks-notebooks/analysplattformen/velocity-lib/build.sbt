@@ -18,7 +18,6 @@ lazy val releaseSteps = Seq[ReleaseStep](
 )
 
 lazy val releaseSteps2 = Seq[ReleaseStep](
-  checkOrganization,                // Look Ma', my own release step!
   checkSnapshotDependencies,
   inquireVersions,
   runTest,
@@ -42,8 +41,8 @@ lazy val root = project
     //   releaseSteps
     // )
     // releaseVersion := "v0.9.0",
-    // releaseProcess := {
-    //   releaseSteps
-    // }
+    releaseProcess := {
+      releaseSteps2
+    }
 
   )
