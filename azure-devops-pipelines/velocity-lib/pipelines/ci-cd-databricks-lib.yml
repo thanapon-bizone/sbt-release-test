@@ -35,27 +35,27 @@ stages:
     parameters:
       vmImage: $(vmImage)
 
-  # Run SBT Test
-  - template: task-templates/stage-sbt-test.yml
-    parameters:
-      vmImage: $(vmImage)
+  # # Run SBT Test
+  # - template: task-templates/stage-sbt-test.yml
+  #   parameters:
+  #     vmImage: $(vmImage)
 
-  # Deploy Lib to dev
-  - template: task-templates/stage-deployment.yml
-    parameters:
-      vmImage: $(winImage)
-      stageName: Deploy_Dev
-      shouldRun: 'true'
-      stageDisplayName: 'Deploy Lib to Dev'
-      environment: '$(devEnvironment)'
-      isFeatureBranch: ${{ variables.isFeatureBranch }}
-      branchName: ${{ variables.branchName }}
-      azureSubscription: ${{ variables.devSubscriptionName }}
-      workspace: $(devWorkspace)
-      databricksInstance: $(devDatabricksInstance)
-      databricksPath: $(devDatabricksPath)
-      devOpsServiceConnection: $(devDevOpsServiceConnection)
-      keyVaultName: $(devKeyVaultName)
+  # # Deploy Lib to dev
+  # - template: task-templates/stage-deployment.yml
+  #   parameters:
+  #     vmImage: $(winImage)
+  #     stageName: Deploy_Dev
+  #     shouldRun: 'true'
+  #     stageDisplayName: 'Deploy Lib to Dev'
+  #     environment: '$(devEnvironment)'
+  #     isFeatureBranch: ${{ variables.isFeatureBranch }}
+  #     branchName: ${{ variables.branchName }}
+  #     azureSubscription: ${{ variables.devSubscriptionName }}
+  #     workspace: $(devWorkspace)
+  #     databricksInstance: $(devDatabricksInstance)
+  #     databricksPath: $(devDatabricksPath)
+  #     devOpsServiceConnection: $(devDevOpsServiceConnection)
+  #     keyVaultName: $(devKeyVaultName)
 
   # Deploy Lib to Prod
   # No feature branch should be deploy to Prod
