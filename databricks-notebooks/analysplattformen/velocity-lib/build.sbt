@@ -20,10 +20,13 @@ lazy val releaseSteps = Seq[ReleaseStep](
 lazy val releaseSteps2 = Seq[ReleaseStep](
   checkSnapshotDependencies,
   inquireVersions,
-  runTest,
+  runClean,
   setReleaseVersion,
   publishArtifacts,
-  setNextVersion
+  tagRelease,
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
 )
 
 
