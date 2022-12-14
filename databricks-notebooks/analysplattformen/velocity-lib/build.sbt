@@ -22,7 +22,7 @@ lazy val releaseSteps = Seq[ReleaseStep](
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "velocity-lib",
+    name := projectName,
     publishArtifact := false,
     publish / skip := true,
     releaseProcess := releaseSteps,
