@@ -17,6 +17,16 @@ lazy val releaseSteps = Seq[ReleaseStep](
   tagRelease
 )
 
+lazy val releaseSteps2 = Seq[ReleaseStep](
+  checkOrganization,                // Look Ma', my own release step!
+  checkSnapshotDependencies,
+  inquireVersions,
+  runTest,
+  setReleaseVersion,
+  publishArtifacts,
+  setNextVersion
+)
+
 
 lazy val root = project
   .in(file("."))
