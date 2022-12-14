@@ -29,6 +29,7 @@ lazy val root = project
     // releaseProcess := Seq[ReleaseStep](
     //   releaseSteps
     // )
+    releaseVersion := "v0.9.0"
     releaseProcess := {
       releaseSteps
     }
