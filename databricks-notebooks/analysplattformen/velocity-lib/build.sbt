@@ -32,8 +32,8 @@ lazy val root = project
     //   releaseSteps
     // )
     // releaseVersion := "v0.9.0",
-    releaseProcess := {
-      releaseSteps
-    }
+    // releaseProcess := {
+    //   releaseSteps
+    // }
 
   )
