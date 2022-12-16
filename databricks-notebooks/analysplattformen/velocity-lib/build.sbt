@@ -5,6 +5,7 @@ ThisBuild / organization := "com.bizone"
 ThisBuild / scalaVersion := "2.12.14"
 
 val scalaLibVersion = "2.12"
+val sparkVersion = "3.2.1"
 val projectName = "velocity-lib"
 
 lazy val releaseSteps = Seq[ReleaseStep](
