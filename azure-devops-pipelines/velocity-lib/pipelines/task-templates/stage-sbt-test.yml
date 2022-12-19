@@ -8,5 +8,5 @@ stages:
       pool:
         vmImage: '${{ parameters.vmImage }}'
       steps:
-      - script: (cd $(velocityLibPath)/; sbt compile package)
+      - script: (cd $(velocityLibPath)/; sbt "test:compile; test")
         displayName: Compile and test
