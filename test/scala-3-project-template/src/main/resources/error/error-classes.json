@@ -1,0 +1,32 @@
+{
+    "INVALID_DELTA_TABLE" : {
+      "message" : [
+        "is not a Delta table",
+        "doesn't exist",
+        "does not exist"
+      ],
+      "sqlState" : "100"
+    },
+    "IS_NOT_DELTA_TABLE" : {
+      "message" : [
+        "is not a Delta table",
+        "not a table Delta"
+      ],
+      "sqlState" : "100"
+    },
+    "DELTA_TABLE_NOT_FOUND" : {
+      "message" : [
+        "Delta table <tableName> doesn't exist.",
+        "doesn't exist",
+        "does not exist"
+      ],
+      "sqlState" : "100"
+    },
+    "DELTA_TABLE_NOT_FOUND_STREAMING" : {
+      "message" : [
+        "Delta table <tableName> doesn't exist. Please delete your streaming query checkpoint and restart.",
+        "checkpoint and restart"
+      ],
+      "sqlState" : "100"
+    }
+}
